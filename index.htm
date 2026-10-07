@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Control</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+    body { background-color: #0b0f19; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+    .card { background: #161f30; border: 1px solid #232f48; border-radius: 16px; padding: 25px; width: 100%; max-width: 360px; text-align: center; }
+    h1 { font-size: 1.5rem; margin-bottom: 10px; color: #ff4655; }
+    p { font-size: 0.85rem; color: #94a3b8; margin-bottom: 20px; }
+    select, button { width: 100%; padding: 12px; margin-top: 10px; border-radius: 8px; border: 1px solid #334155; font-size: 1rem; }
+    select { background: #0f172a; color: #fff; }
+    button { background: #22c55e; color: #fff; font-weight: bold; border: none; cursor: pointer; margin-top: 15px; }
+    button:active { transform: scale(0.98); }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>PANEL ADMIN</h1>
+    <p>Estado de recargas de Free Fire</p>
+
+    <select id="statusSelect">
+      <option value="true">🟢 DISPONIBLE (Verde)</option>
+      <option value="false">🔴 NO DISPONIBLE (Rojo)</option>
+    </select>
+
+    <button id="saveBtn">💾 GUARDAR ESTADO</button>
+  </div>
+
+  <script>
+    const statusSelect = document.getElementById('statusSelect');
+    const saveBtn = document.getElementById('saveBtn');
+
+    // Carga el estado actual
+    const currentStatus = localStorage.getItem('ff_available') !== 'false';
+    statusSelect.value = currentStatus ? "true" : "false";
+
+    saveBtn.addEventListener('click', () => {
+      localStorage.setItem('ff_available', statusSelect.value);
+      alert('¡Estado actualizado correctamente!');
+    });
+  </script>
+</body>
+</html>
